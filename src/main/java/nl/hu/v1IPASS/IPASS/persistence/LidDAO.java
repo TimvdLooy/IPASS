@@ -1,6 +1,7 @@
 package nl.hu.v1IPASS.IPASS.persistence;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -26,8 +27,9 @@ public class LidDAO extends BaseDAO{
 				String Voornaam = dbResultSet.getString("Voornaam");
 				int Bondsnummer = dbResultSet.getInt("Bondsnummer");
 				boolean Actief = dbResultSet.getBoolean("Actief");
-				String Wachtwoord = dbResultSet.getString("Wachtwoor");
-				Lid newLid = new Lid(Email, Telefoonnummer, Leeftijd, Achternaam, Voornaam, Bondsnummer, Actief, Wachtwoord);
+				String Wachtwoord = dbResultSet.getString("Wachtwoord");
+				String Role = dbResultSet.getString("role");
+				Lid newLid = new Lid(Email, Telefoonnummer, Leeftijd, Achternaam, Voornaam, Bondsnummer, Actief, Wachtwoord, Role);
 				lidLijst.add(newLid);
 			}	
 		} catch (SQLException sqle) {sqle.printStackTrace(); }
@@ -48,8 +50,9 @@ public class LidDAO extends BaseDAO{
 				String Achternaam = dbResultSet.getString("Achternaam");
 				String Voornaam = dbResultSet.getString("Voornaam");
 				boolean Actief = dbResultSet.getBoolean("Actief");
-				String Wachtwoord = dbResultSet.getString("Wachtwoor");
-				Lid newLid = new Lid(Email, Telefoonnummer, Leeftijd, Achternaam, Voornaam, Bondsnummer, Actief, Wachtwoord);
+				String Wachtwoord = dbResultSet.getString("Wachtwoord");
+				String Role = dbResultSet.getString("role");
+				Lid newLid = new Lid(Email, Telefoonnummer, Leeftijd, Achternaam, Voornaam, Bondsnummer, Actief, Wachtwoord, Role);
 				lid=newLid;
 			}	
 		} catch (SQLException sqle) {sqle.printStackTrace(); }
@@ -57,7 +60,7 @@ public class LidDAO extends BaseDAO{
 	}
 	
 	public void insert(Lid Lid){
-		String query = "INSERT INTO Lid (Email, Telefoonnummer, Leeftijd, Achternaam, Voornaam, Bondsnummer, Actief, Wachtwoord) VALUES ('"
+		String query = "INSERT INTO Lid (Email, Telefoonnummer, Leeftijd, Achternaam, Voornaam, Bondsnummer, Actief, Wachtwoord, role) VALUES ('"
 				+Lid.getEmail()
 				+ "', "
 				+ Lid.getTelefoonnummer()
@@ -73,8 +76,9 @@ public class LidDAO extends BaseDAO{
 				+Lid.isActief()
 				+", '"
 				+Lid.getWachtwoord()
+				+"', '"
+				+Lid.getRole()
 				+"')";
-		System.out.println(query);
 		try (Connection con = super.getConnection()){
 			Statement stmt = con.createStatement();
 			ResultSet dbResultSet = stmt.executeQuery(query);
@@ -83,7 +87,6 @@ public class LidDAO extends BaseDAO{
 	
 	public void delete(Lid Lid){
 		String query = "Delete From Lid where Bondsnummer = "+ Lid.getBondsnummer();
-		System.out.println(query);
 		try (Connection con = super.getConnection()){
 		Statement stmt = con.createStatement();
 		ResultSet dbResultSet = stmt.executeQuery(query);
@@ -91,10 +94,27 @@ public class LidDAO extends BaseDAO{
 	}
 	
 	public void update(Lid Lid){
-		String query = "UPDATE Lid SET Wachtwoord='" + Lid.getWachtwoord() + "' Where Bondsnummer = " + Lid.getBondsnummer();
+		String query = "UPDATE Lid SET Wachtwoord='" + Lid.getWachtwoord() +"' Actief = true Where Bondsnummer = " + Lid.getBondsnummer();
 		try (Connection con = super.getConnection()){
 			Statement stmt = con.createStatement();
 			ResultSet dbResultSet = stmt.executeQuery(query);
 		} catch (SQLException sqle) {sqle.printStackTrace();}
 	}
+	
+	public String findGebruikerRole(String Bondsnummer, String password) {
+		 String role = null;
+		 int nummer = Integer.parseInt(Bondsnummer);
+		 String query = "SELECT role FROM Lid WHERE Bondsnummer = "+ nummer +" AND Wachtwoord = '"+ password +"' AND Actief = true";
+		 try (Connection con = super.getConnection()) {
+
+			Statement stmt = con.createStatement();
+			ResultSet dbResultSet = stmt.executeQuery(query);
+		 if (dbResultSet.next())
+			 role = dbResultSet.getString("role");
+
+		 } catch (SQLException sqle) {
+		 sqle.printStackTrace();
+		 }
+		 return role;
+		 }
 }

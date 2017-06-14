@@ -1,6 +1,8 @@
 package nl.hu.v1IPASS.IPASS.webservices;
 
 import java.sql.Date;
+import java.sql.Time;
+import java.text.SimpleDateFormat;
 
 import javax.json.Json;
 import javax.json.JsonArray;
@@ -30,11 +32,14 @@ public class WedstrijdRescources {
 	@Produces("application/json")
 	public String findAllWedstrijden(){
 		for(Wedstrijd W : service.findAllWedstrijd()){
+			SimpleDateFormat localDateFormat = new SimpleDateFormat("HH:mm:ss");
+			String begintijd = localDateFormat.format(W.getBegintijd());
+			String eindtijd = localDateFormat.format(W.getEindtijd());
 			job.add("Minimumleeftijd", W.getMinimumleeftijd());
 			job.add("Typeboog", W.getTypeboog());
-			job.add("Begintijd", (JsonValue) W.getBegintijd());
-			job.add("Eindtijd", (JsonValue) W.getEindtijd());
-			job.add("Datum", (JsonValue) W.getDatum());
+			job.add("Begintijd", begintijd);
+			job.add("Eindtijd", eindtijd);
+			job.add("Datum", W.getDatum().toString());
 			job.add("Naam", W.getNaam());
 			job.add("WedstrijdId", W.getWedstrijdId());
 			jab.add(job);
@@ -47,12 +52,13 @@ public class WedstrijdRescources {
 	@Path("/insert")
 	@Produces("application/json")
 	public void insert(@FormParam("Minimumleeftijd") int Minimumleeftijd,
-						@FormParam("Typeboog") String Typeboog,
-						@FormParam("Begintijd") Date Begintijd,
-						@FormParam("Eindtijd") Date Eindtijd,
+						@FormParam("TypeBoog") String Typeboog,
+						@FormParam("Begintijd") Time Begintijd,
+						@FormParam("Eindtijd") Time Eindtijd,
 						@FormParam("Datum") Date Datum,
-						@FormParam("Naam") String Naam){
-		Wedstrijd Wedstrijd = new Wedstrijd(Minimumleeftijd, Typeboog, Begintijd, Eindtijd, Datum, Naam);
+						@FormParam("Wedstrijdnaam") String Naam,
+						@FormParam("Wedstrijdbeschrijving") String Beschrijving){
+		Wedstrijd Wedstrijd = new Wedstrijd(Minimumleeftijd, Typeboog, Begintijd, Eindtijd, Datum, Naam, Beschrijving);
 		service.insertWedstrijd(Wedstrijd);
 	}
 	
@@ -60,5 +66,6 @@ public class WedstrijdRescources {
 	@Path("/Delete/{WedstrijdId}")
 	public void delete(@PathParam("WedstrijdId") int WedstrijdId){
 		service.deleteWedstrijd(WedstrijdId);
+		System.out.println("Wedstrijd " + WedstrijdId + " verwijderd");
 	}
 }

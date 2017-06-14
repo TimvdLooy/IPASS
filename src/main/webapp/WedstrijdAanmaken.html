@@ -1,0 +1,70 @@
+<html>
+	<head>
+	  	<title>My Title</title>
+	  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	  	<link rel="stylesheet" type="text/css" href="IPASS.css">
+	  	<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+  	<body>
+		<div id="custom-bootstrap-menu" class="navbar navbar-default " role="navigation">
+		</div>
+		
+		<div class="container">
+    <h1 class="well">Wedstrijd invoeren</h1>
+	<div class="col-lg-12 well">
+	<div class="row">
+				<form id='WedstrijdForum'>
+					<div class="col-sm-12">
+						<div class="row">
+							<div class="col-sm-6 form-group">
+								<label>Wedstrijd naam</label>
+								<input name='Wedstrijdnaam' type="text" placeholder="Wedstrijd naam hier invoeren" class="form-control">
+							</div>
+							<div class="col-sm-6 form-group">
+							</div>
+						</div>					
+						<div class="row">
+							<div class="col-sm-4 form-group">
+								<label>Begintijd</label>
+								<input id='Begintijd' name='Begintijd' type="text" placeholder="Begintijd hier invoeren" class="form-control">
+							</div>	
+							<div class="col-sm-4 form-group">
+								<label>Eindtijd</label>
+								<input id='Eindtijd' name='Eindtijd' type="text" placeholder="Eindtijd hier invoeren" class="form-control">
+							</div>	
+							<div class="col-sm-4 form-group">
+								<label>Datum</label>
+								<input id='Datum' name='Datum' type="text" placeholder="Datum hier invoeren" class="form-control">
+							</div>		
+						</div>
+						<div class="row">
+							<div class="col-sm-6 form-group">
+								<label>Minimumleeftijd</label>
+								<input name='Minimumleeftijd' type="text" placeholder="Minimumleeftijd" class="form-control">
+							</div>		
+							<div class="col-sm-6 form-group">
+								<label>Type boog</label>
+								<input name='TypeBoog' type="text" placeholder="Type boog hier invoeren" class="form-control">
+							</div>	
+						</div>						
+							<div class="form-group">
+								<label>Wedstrijd beschrijving</label>
+							<textarea name='Wedstrijdbeschrijving' placeholder="Deze wedstrijd houd in...." rows="3" class="form-control"></textarea>
+						</div>	
+					<button id='maakWedstrijdAan' type="submit" class="btn btn-lg btn-info">Submit</button>					
+					</div>
+				</form> 
+				</div>
+	</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="JQuery/jquery.alphanum.js"></script>
+	<script src="JQuery/jquery.formatter.min.js"></script>
+	<script src="JQuery/jquery.validate.min.js"></script>
+	<script src="additional-methods.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="IPASS.js"></script>
+	<script src="IPASS_Validation.js"></script>
+  	</body>
+</html>

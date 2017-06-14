@@ -1,4 +1,5 @@
 package nl.hu.v1IPASS.IPASS.webservices;
+import javax.annotation.security.RolesAllowed;
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
@@ -37,35 +38,43 @@ public class LidResources {
 			jab.add(job);
 		}
 		JsonArray array = jab.build();
-		System.out.println("doe het");
 		return array.toString();
 	}
 	
 	@POST
+	@RolesAllowed("Admin")
 	@Path("/Insert")
-	@Produces("application/json")	public void insert(@FormParam("Email") String Email,
+	@Produces("application/json")	public void insert(@FormParam("email") String Email,
 						@FormParam("Telefoonnummer") int Telefoonnummer,
 						@FormParam("Leeftijd") int Leeftijd,
 						@FormParam("Achternaam") String Achternaam,
 						@FormParam("Voornaam") String Voornaam,
-						@FormParam("Bondsnummer") int Bondsnummer,
-						@FormParam("Actief") boolean Actief){
+						@FormParam("Bondsnummer") int Bondsnummer){
 		IPASSService service = sp.getIPASSService();
-		Lid Lid = new Lid(Email, Telefoonnummer, Leeftijd, Achternaam, Voornaam, Bondsnummer, Actief, null);
+		String role = "User";
+		Lid Lid = new Lid(Email, Telefoonnummer, Leeftijd, Achternaam, Voornaam, Bondsnummer, false, null, role);
 		service.insertLid(Lid);
 	}
 	
 	@PUT
-	@Path("/Update/{Bondsnummer}")
-	@Produces("applciation/json")
-	public void update(@PathParam("Bondsnummer") int Bondsnummer,
+	@Path("/Update")
+	@Produces("application/json")
+	public void update(@FormParam("Bondsnummer") int Bondsnummer,
 						@FormParam("Wachtwoord") String Wachtwoord){
+		System.out.println("we tried");
 		IPASSService service = sp.getIPASSService();
 		Lid Lid = service.findLidOnBondsnummer(Bondsnummer);
-		service.updateLid(Lid);
+		if(Lid.isActief() == false){
+			Lid.setWachtwoord(Wachtwoord);
+			service.updateLid(Lid);
+		}
+		else{
+			System.out.println("poging tot wachtwoord verandering van actief account");
+		}
 	}
 	
 	@DELETE
+	@RolesAllowed("Admin")
 	@Path("Delete/{Bondsnummer}")
 	public void deleteLid(@PathParam("Bondsnummer") int Bondsnummer){
 		IPASSService service = sp.getIPASSService();

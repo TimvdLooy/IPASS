@@ -9,8 +9,9 @@ public class Lid {
 	private int Bondsnummer;
 	private boolean Actief;
 	private String Wachtwoord;
+	private String role;
 	
-	public Lid(String Email, int Telefoonnummer, int Leeftijd, String Achternaam, String Voornaam, int Bondsnummer, boolean Actief, String Wachtwoord){
+	public Lid(String Email, int Telefoonnummer, int Leeftijd, String Achternaam, String Voornaam, int Bondsnummer, boolean Actief, String Wachtwoord, String role){
 		this.Email = Email;
 		this.Telefoonnummer = Telefoonnummer;
 		this.Leeftijd = Leeftijd;
@@ -19,6 +20,7 @@ public class Lid {
 		this.Bondsnummer = Bondsnummer;
 		this.Actief = Actief;
 		this.Wachtwoord = Wachtwoord;
+		this.role = role;
 	}
 	
 	public String getEmail() {
@@ -68,5 +70,13 @@ public class Lid {
 	}
 	public void setWachtwoord(String wachtwoord) {
 		Wachtwoord = wachtwoord;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 }
