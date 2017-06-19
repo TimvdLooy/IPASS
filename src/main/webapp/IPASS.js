@@ -33,6 +33,7 @@ function laadWedstrijden(){
 	});
 	$("#WedstrijdLijst").append("</div>");
 	
+	var href6 = window.location.href.split("/");
 	if(href6[href6.length-1] == "WedstrijdLijst_Lid.html"){
 	$("#WedstrijdLijst_lid").html("");
 	var uri = "restservices/Wedstrijd/Leeftijd/"+window.sessionStorage.getItem("Leeftijd");
@@ -163,6 +164,7 @@ $('#login').click(function(event){
 	}).fail(function(jqXHR, textStatus, errorThrown){
 		console.log(textStatus);
 		console.log(errorThrown);
+		$("#foutwachtwoord").html("Fout bondnsummer, wachtwoord combinatie");
 	}).done(function(){
 		var uri = "restservices/Lid/vindLid";
 		 $.ajax(uri, { 
