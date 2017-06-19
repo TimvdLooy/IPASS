@@ -2,41 +2,28 @@ package nl.hu.v1IPASS.IPASS.persistence;
 
 import java.net.URI;
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 
 public class BaseDAO {
- private DataSource connectionPool;
- public BaseDAO() {
- try {
- final String DATABASE_URL_PROP = System.getenv("DATABASE_URL");
- if (DATABASE_URL_PROP != null) {
- URI dbUri = new URI(DATABASE_URL_PROP);
- String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + dbUri.getPath();
- BasicDataSource pool = new BasicDataSource();
- if (dbUri.getUserInfo() != null) {
- pool.setUsername(dbUri.getUserInfo().split(":")[0]);
- pool.setPassword(dbUri.getUserInfo().split(":")[1]);
- }
- pool.setDriverClassName("org.postgresql.Driver");
- pool.setUrl(dbUrl);
- pool.setInitialSize(1);
+	protected static Connection getConnection() {
+	    Connection con = null;
+		try {
+			Class.forName("org.postgresql.Driver");
+			
+			String username = "ytfykccyqnuxnr";
+			String password = "7c73b3455d3c874e6988bd42c57c71bbffc69362875824b7734736361234f0ac";
+		    String dbUrl = "jdbc:postgresql://ec2-79-125-118-221.eu-west-1.compute.amazonaws.com:5432/dfoo2gfmef89ab";
 
- connectionPool = pool;
- } else {
- InitialContext ic = new InitialContext();
- connectionPool = (DataSource) ic.lookup("java:comp/env/jdbc/PostgresDS");
- }
- } catch (Exception e) {
- throw new RuntimeException(e);
- }
- }
- protected final Connection getConnection() {
- try {
- return connectionPool.getConnection();
- } catch (Exception ex) {
- throw new RuntimeException(ex);
- }
- }
+		    con = DriverManager.getConnection(dbUrl, username, password);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return con;
+	}
 }
