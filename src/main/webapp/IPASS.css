@@ -18,7 +18,12 @@
 
 #btn{
 	padding:2px;
-	margin-right:2px;
+	margin-right:10px;
+	margin-bottom:5px;
+}
+
+.list-group-item{
+	padding: 20px 15px;
 }
 
 .top-buffer{

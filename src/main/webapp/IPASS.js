@@ -22,9 +22,9 @@ function laadWedstrijden(){
        },
         success: function(response) {
 		$.each(response, function(key, value){
-			$("#WedstrijdLijst").append("<a href='#' id='list-item' class='list-group-item'>"+ value["Naam"] + " "+ value["Datum"] +
-					"<div class='btn-group pull-right'><input onclick='deleteWedstrijd("+ value["WedstrijdId"] +")' type='button' id='btn' value='verwijder' class='pull-right btn-danger'>"+
-					"<input onclick='Redirect("+ value["WedstrijdId"] +")' type='button' id='btn' value='Score invoeren' class='pull-right btn-info'></div></a>");
+			$("#WedstrijdLijst").append("<a href='#' id='list-item' class='list-group-item'><div class='row'><div class='col-sm-12'><p>"+ value["Naam"] + " "+ value["Datum"] +
+					"</p></div></div><div class='row'><div class='col-sm-12'><div class='btn-group'><input onclick='deleteWedstrijd("+ value["WedstrijdId"] +")' type='button' id='btn' value='verwijder' class='btn-danger'>"+
+					"<input onclick='Redirect("+ value["WedstrijdId"] +")' type='button' id='btn' value='Score invoeren' class='btn-info'></div></div></div></a>");
 		});
         },
         error: function(response) {
