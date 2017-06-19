@@ -33,6 +33,7 @@ function laadWedstrijden(){
 	});
 	$("#WedstrijdLijst").append("</div>");
 	
+	if(href6[href6.length-1] == "WedstrijdLijst_Lid.html"){
 	$("#WedstrijdLijst_lid").html("");
 	var uri = "restservices/Wedstrijd/Leeftijd/"+window.sessionStorage.getItem("Leeftijd");
 	$.ajax(uri, { 
@@ -51,6 +52,7 @@ function laadWedstrijden(){
        }
 	});
 	$("#WedstrijdLijst_lid").append("</div>");
+	}
 }
 
 function navBar(){
