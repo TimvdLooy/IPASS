@@ -42,6 +42,25 @@ public class LidResources {
 	}
 	
 	@POST
+	@RolesAllowed({"User","Admin"})
+	@Path("/vindLid")
+	@Produces("application/json")
+	public String findLid(@FormParam("Bondsnummer") int Bondsnummer){
+		Lid lid = service.findLidOnBondsnummer(Bondsnummer);
+		job.add("Email", lid.getEmail());
+		job.add("Telefoonnummer", lid.getTelefoonnummer());
+		job.add("Leeftijd", lid.getLeeftijd());
+		job.add("Achternaam", lid.getAchternaam());
+		job.add("Voornaam", lid.getVoornaam());
+		job.add("Bondsnummer", lid.getBondsnummer());
+		job.add("Actief", lid.isActief());
+		job.add("role", lid.getRole());
+		jab.add(job);
+		JsonArray array = jab.build();
+		return array.toString();
+	}
+	
+	@POST
 	@RolesAllowed("Admin")
 	@Path("/Insert")
 	@Produces("application/json")	public void insert(@FormParam("email") String Email,

@@ -53,11 +53,51 @@ public class IPASSService {
 		InschrijvingenDAO.insert(Inschrijvingen);
 	}
 	
-	public int averrageScore(Lid lid){
-		return InschrijvingenDAO.averrageScore(lid);
+	public ArrayList<Integer> averrageScore(int Bondsnummer, int Jaar){
+		return InschrijvingenDAO.averrageScore(Bondsnummer, Jaar);
 	}
 	
 	public void updateInschrijvingen(Inschrijvingen Inschrijvingen){
 		InschrijvingenDAO.update(Inschrijvingen);
+	}
+	
+	public Wedstrijd findWedstrijd(int WedstrijdId){
+		return WedstrijdDAO.findWedstrijd(WedstrijdId);
+	}
+	
+	public int aantalGewonnenWedstrijden(int Bondsnummer){
+		return InschrijvingenDAO.aantalGewonnenWedstrijden(Bondsnummer);
+	}
+	
+	public int aantalVerlorenWedstrijden(int Bondsnummer){
+		return InschrijvingenDAO.aantalVerlorenWedstrijden(Bondsnummer);
+	}
+	
+	public int aantalNogTeSpelen(int Bondsnummer){
+		return InschrijvingenDAO.aantalNogTeSpelen(Bondsnummer);
+	}
+	
+	public boolean checkInschrijving(int Bondsnummer, int WedstrijdId){
+		return InschrijvingenDAO.checkInschrijving(Bondsnummer, WedstrijdId);
+	}
+	
+	public void deleteInschrijving(int Bondsnummer, int WedstrijdId){
+		InschrijvingenDAO.Delete(Bondsnummer, WedstrijdId);
+	}
+	
+	public ArrayList<Lid> findInschrijvingenWedstrijd(int WedstrijdId){
+		ArrayList<Lid> ledenLijst = new ArrayList<Lid>();
+		for(int i : InschrijvingenDAO.findInschrijvingWedstrijd(WedstrijdId)){
+			ledenLijst.add(LidDAO.findOnBondsnummer(i));
+		}
+		return ledenLijst;
+	}
+	
+	public Inschrijvingen findInschrijvingOnBondsnummerWedstrijdId(int Bondsnummer, int WedstrijdId){
+		return InschrijvingenDAO.findInschrijvingOnBondsnummerWedstrijdId(Bondsnummer, WedstrijdId);
+	}
+	
+	public ArrayList<Wedstrijd> findWedstrijdenLeeftijd(int Leeftijd){
+		return WedstrijdDAO.findWedstrijdenLeeftijd(Leeftijd);
 	}
 }

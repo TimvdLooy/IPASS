@@ -14,7 +14,7 @@ public class LidDAO extends BaseDAO{
 	
 	public ArrayList<Lid> findAllLid(){
 		ArrayList<Lid> lidLijst = new ArrayList<Lid>();
-		String query = "Select * From Lid";
+		String query = "Select * From Lid Where role = 'User'";
 		try (Connection con = super.getConnection()){
 			Statement stmt = con.createStatement();
 			ResultSet dbResultSet = stmt.executeQuery(query);
@@ -94,9 +94,10 @@ public class LidDAO extends BaseDAO{
 	}
 	
 	public void update(Lid Lid){
-		String query = "UPDATE Lid SET Wachtwoord='" + Lid.getWachtwoord() +"' Actief = true Where Bondsnummer = " + Lid.getBondsnummer();
+		String query = "UPDATE Lid SET Wachtwoord='" + Lid.getWachtwoord() +"', Actief = true Where Bondsnummer = " + Lid.getBondsnummer();
 		try (Connection con = super.getConnection()){
 			Statement stmt = con.createStatement();
+			System.out.println(query);
 			ResultSet dbResultSet = stmt.executeQuery(query);
 		} catch (SQLException sqle) {sqle.printStackTrace();}
 	}

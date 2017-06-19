@@ -1,0 +1,38 @@
+<html>
+	<head>
+	  	<title>Administrator Home pagina</title>
+	  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	  	<link rel="stylesheet" type="text/css" href="IPASS.css">
+	  	<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+  	<body>
+		<div id="custom-bootstrap-menu" class="navbar navbar-default " role="navigation">
+		</div>
+	<div class="container">
+		<div class="row">
+		  	<form id='loginForm'>
+		  		<div class="row">
+		  			<div class="col-sm-6 form-group">
+		  				<input type='button' onclick="location.href='http://localhost:4711/IPASS/LedenLijst.html';" id='Ledenlijst' value='Leden lijst (lid verwijderen)' class='btn-lg btn-block btn-info'/>
+		  			</div>
+		  			<div class="col-sm-6 form-group">
+		  				<input type='button' onclick="location.href='http://localhost:4711/IPASS/LidAanmaken.html';" id='LidToevoegen' value='Lid toevoegen' class='btn-lg btn-block btn-info'/>
+		  			</div>
+		  		</div>
+		  		<div class="row top-buffer">
+		  			<div class="col-sm-6 form-group">
+		  				<input type='button' onclick="location.href='http://localhost:4711/IPASS/WedstrijdAanmaken.html';" value='Wedstrijd aanmaken' id='WedstrijdAanmaken' class='btn-lg btn-block btn-info'/>
+		  			</div>
+		  			<div class="col-sm-6 form-group">
+		  				<input type='button' onclick="location.href='http://localhost:4711/IPASS/WedstrijdLijst.html';" value='Wedstrijd lijst' id='WedstrijdLijst' class='btn-lg btn-block btn-info'/>
+		  			</div>
+		  		</div>
+		  	</form>
+  		</div>
+  	</div>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.0.min.js"></script>
+	<script src="IPASS.js"></script>
+  	</body>
+</html>

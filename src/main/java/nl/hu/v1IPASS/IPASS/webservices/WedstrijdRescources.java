@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.sql.Time;
 import java.text.SimpleDateFormat;
 
+import javax.annotation.security.RolesAllowed;
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
@@ -29,6 +30,7 @@ public class WedstrijdRescources {
 	JsonObjectBuilder job = Json.createObjectBuilder();
 	
 	@GET
+	@RolesAllowed("Admin")
 	@Produces("application/json")
 	public String findAllWedstrijden(){
 		for(Wedstrijd W : service.findAllWedstrijd()){
@@ -48,7 +50,30 @@ public class WedstrijdRescources {
 		return array.toString();
 	}
 	
+	@GET
+	@RolesAllowed("User")
+	@Path("/Leeftijd/{Leeftijd}")
+	@Produces("application/json")
+	public String findWedstrijdLeeftijd(@PathParam("Leeftijd") int Leeftijd){
+		for(Wedstrijd W : service.findWedstrijdenLeeftijd(Leeftijd)){
+			SimpleDateFormat localDateFormat = new SimpleDateFormat("HH:mm:ss");
+			String begintijd = localDateFormat.format(W.getBegintijd());
+			String eindtijd = localDateFormat.format(W.getEindtijd());
+			job.add("Minimumleeftijd", W.getMinimumleeftijd());
+			job.add("Typeboog", W.getTypeboog());
+			job.add("Begintijd", begintijd);
+			job.add("Eindtijd", eindtijd);
+			job.add("Datum", W.getDatum().toString());
+			job.add("Naam", W.getNaam());
+			job.add("WedstrijdId", W.getWedstrijdId());
+			jab.add(job);
+		}
+		JsonArray array = jab.build();
+		return array.toString();
+	}
+	
 	@POST
+	@RolesAllowed("Admin")
 	@Path("/insert")
 	@Produces("application/json")
 	public void insert(@FormParam("Minimumleeftijd") int Minimumleeftijd,
@@ -63,9 +88,33 @@ public class WedstrijdRescources {
 	}
 	
 	@DELETE
+	@RolesAllowed("Admin")
 	@Path("/Delete/{WedstrijdId}")
 	public void delete(@PathParam("WedstrijdId") int WedstrijdId){
 		service.deleteWedstrijd(WedstrijdId);
 		System.out.println("Wedstrijd " + WedstrijdId + " verwijderd");
+	}
+	
+	@GET
+	@RolesAllowed("User")
+	@Path("/find/{WedstrijdId}")
+	@Produces("application/json")
+	public String findWedstrijd(@PathParam("WedstrijdId") int WedstrijdId){
+		Wedstrijd W = service.findWedstrijd(WedstrijdId);
+		SimpleDateFormat localDateFormat = new SimpleDateFormat("HH:mm:ss");
+		String begintijd = localDateFormat.format(W.getBegintijd());
+		String eindtijd = localDateFormat.format(W.getEindtijd());
+		if(W.getMinimumleeftijd() != 0){ job.add("Minimumleeftijd", W.getMinimumleeftijd());}
+		job.add("Typeboog", W.getTypeboog());
+		job.add("Begintijd", begintijd);
+		job.add("Eindtijd", eindtijd);
+		job.add("Datum", W.getDatum().toString());
+		job.add("Naam", W.getNaam());
+		job.add("WedstrijdId", W.getWedstrijdId());
+		if(W.getBeschrijving() != null){job.add("Wedstrijdbeschrijving", W.getBeschrijving());}
+		jab.add(job);
+		JsonArray array = jab.build();
+		return array.toString();
+		
 	}
 }

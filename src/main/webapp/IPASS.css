@@ -1,5 +1,24 @@
+
+
+.navbar-default .navbar-nav>li>a{
+	color:#010750;
+}
+
+.navbar-default .navbar-brand{
+	color:#010750;
+}
+
+#Inschrijven{
+	margin-top:50px;
+}
+
+#Uitschrijven{
+	margin-top:50px;
+}
+
 #btn{
 	padding:2px;
+	margin-right:2px;
 }
 
 .top-buffer{

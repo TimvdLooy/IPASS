@@ -69,4 +69,48 @@ public class WedstrijdDAO extends BaseDAO{
 		ResultSet dbResultSet = stmt.executeQuery(query);
 		} catch (SQLException sqle) {sqle.printStackTrace();}
 	}
+	
+	public Wedstrijd findWedstrijd(int WedstrijdId){
+		Wedstrijd WedstrijdLijst = null;
+		String query = "Select * From Wedstrijd Where WedstrijdId="+WedstrijdId;
+		try (Connection con = super.getConnection()){
+			Statement stmt = con.createStatement();
+			ResultSet dbResultSet = stmt.executeQuery(query);
+			
+			while(dbResultSet.next()){
+				int Minimumleeftijd = dbResultSet.getInt("Minimumleeftijd");
+				String Typeboog = dbResultSet.getString("Typeboog");
+				Time Begintijd = dbResultSet.getTime("Begintijd");
+				Time Eindtijd = dbResultSet.getTime("Eindtijd");
+				Date Datum = dbResultSet.getDate("Datum");
+				String Naam = dbResultSet.getString("Naam");
+				String Beschrijving = dbResultSet.getString("Wedstrijdbeschrijving");
+				WedstrijdLijst = new Wedstrijd(Minimumleeftijd, Typeboog, Begintijd, Eindtijd, Datum, Naam, WedstrijdId, Beschrijving);
+			}	
+		} catch (SQLException sqle) {sqle.printStackTrace(); }
+		return WedstrijdLijst;
+	}
+	
+	public ArrayList<Wedstrijd> findWedstrijdenLeeftijd(int Leeftijd){
+		ArrayList<Wedstrijd> WedstrijdLijst = new ArrayList<Wedstrijd>();
+		String query = "Select * From Wedstrijd Where minimumleeftijd <= "+Leeftijd + " OR minimumleeftijd IS NULL";
+		try (Connection con = super.getConnection()){
+			Statement stmt = con.createStatement();
+			ResultSet dbResultSet = stmt.executeQuery(query);
+			
+			while(dbResultSet.next()){
+				int Minimumleeftijd = dbResultSet.getInt("Minimumleeftijd");
+				String Typeboog = dbResultSet.getString("Typeboog");
+				Time Begintijd = dbResultSet.getTime("Begintijd");
+				Time Eindtijd = dbResultSet.getTime("Eindtijd");
+				Date Datum = dbResultSet.getDate("Datum");
+				String Naam = dbResultSet.getString("Naam");
+				int WedstrijdId = dbResultSet.getInt("WedstrijdId");
+				String Beschrijving = dbResultSet.getString("Wedstrijdbeschrijving");
+				Wedstrijd newWedstrijd = new Wedstrijd(Minimumleeftijd, Typeboog, Begintijd, Eindtijd, Datum, Naam, WedstrijdId, Beschrijving);
+				WedstrijdLijst.add(newWedstrijd);
+			}	
+		} catch (SQLException sqle) {sqle.printStackTrace(); }
+		return WedstrijdLijst;
+	}
 }

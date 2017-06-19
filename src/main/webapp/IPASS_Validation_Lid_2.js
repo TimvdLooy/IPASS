@@ -73,7 +73,7 @@ $("#LidForum2").validate({
      
      submitHandler: function(form) {
     	 console.log("check");
-       var uri = "http://localhost:4711/IPASS/restservices/Lid/Update";
+       var uri = "restservices/Lid/Update";
 	    $.ajax(uri, { 
 	        type: "PUT", 
 	        data: $("#LidForum2").serialize(),

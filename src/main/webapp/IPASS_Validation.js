@@ -89,17 +89,17 @@ $("#WedstrijdForum").validate({
        var uri = "http://localhost:4711/IPASS/restservices/Wedstrijd/insert";
 	    $.ajax(uri, { 
 	        type: "POST", 
-	        data: $("#WedstrijdForum").serialize()
-//	        beforeSend: function(xhr){
-//	        	var token = window.sessionStorage.getItem("sessionToken");
-//	        	xhr.setRequestHeader('Authorization', 'Bearer' + token);
-//	        },
-//	        success: function(response) {
-//	            $("#response").text("Something Inserted!");
-//	        },
-//	        error: function(response) {
-//	            $("#response").text("RIP!");
-//	        }
+	        data: $("#WedstrijdForum").serialize(),
+	        beforeSend: function(xhr){
+	        	var token = window.sessionStorage.getItem("sessionToken");
+	        	xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+	        },
+	        success: function(response) {
+	            $("#response").text("Something Inserted!");
+	        },
+	        error: function(response) {
+	            $("#response").text("RIP!");
+	        }
 	    }); 
 
        event.preventDefault();
