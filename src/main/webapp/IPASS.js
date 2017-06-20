@@ -13,7 +13,7 @@ function laadLeden(){
 
 function laadWedstrijden(){
 	var href7 = window.location.href.split("/");
-	if(href7[href7[href7.length]-1] ==  "WedstrijdLijst_lid.html"){
+	if(href7[href7[href7.length]-1] ==  "WedstrijdLijst.html"){
 	$("#WedstrijdLijst").html("");
 	var uri = "restservices/Wedstrijd";
 	$.ajax(uri, { 
