@@ -12,6 +12,8 @@ function laadLeden(){
 }
 
 function laadWedstrijden(){
+	var href7 = window.location.href.split("/");
+	if(href7[href7[href7.length]-1] ==  "WedstrijdLijst_lid.html"){
 	$("#WedstrijdLijst").html("");
 	var uri = "restservices/Wedstrijd";
 	$.ajax(uri, { 
@@ -32,9 +34,10 @@ function laadWedstrijden(){
        }
 	});
 	$("#WedstrijdLijst").append("</div>");
+	}
 	
 	var href6 = window.location.href.split("/");
-	if(href6[href6.length-1] == "WedstrijdLijst_Lid.html"){
+	if(href6[href6.length-1] == "WedstrijdLijst_lid.html"){
 	$("#WedstrijdLijst_lid").html("");
 	var uri = "restservices/Wedstrijd/Leeftijd/"+window.sessionStorage.getItem("Leeftijd");
 	$.ajax(uri, { 
