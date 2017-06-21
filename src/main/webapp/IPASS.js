@@ -120,7 +120,8 @@ function deleteWedstrijd(WedstrijdId){
        }
     });
     setTimeout(function() {
-    	laadWedstrijden();
+    	console.log("reloading");
+    	location.reload();
     },1000)
 }
 
