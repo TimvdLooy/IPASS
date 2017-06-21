@@ -93,6 +93,10 @@ $("#LidForum").validate({
 	        xhr.setRequestHeader('Authorization', 'Bearer ' + token);
 	        },
 	        success: function(response) {
+	        	 setTimeout(function() {
+	        	    	console.log("reloading");
+	        	    	location.reload();
+	        	    },1000)
 	            $("#response").text("Something Inserted!");
 	        },
 	        error: function(response) {
