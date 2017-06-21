@@ -121,7 +121,7 @@ function deleteWedstrijd(WedstrijdId){
     });
     setTimeout(function() {
     	console.log("reloading");
-    	location.reload();
+    	window.location.replace("WedstrijdLijst.html");
     },1000)
 }
 
