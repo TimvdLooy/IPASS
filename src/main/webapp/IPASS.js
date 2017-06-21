@@ -118,8 +118,10 @@ function deleteWedstrijd(WedstrijdId){
         error: function(response) {
             $("#response").text("RIP!");
        }
-    }); 
-    laadWedstrijden();
+    });
+    setTimeout(function() {
+    	laadWedstrijden();
+    },10000)
 }
 
 function deleteLid(Bondsnummer){
