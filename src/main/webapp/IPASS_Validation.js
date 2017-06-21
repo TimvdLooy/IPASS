@@ -86,7 +86,7 @@ $("#WedstrijdForum").validate({
      },
      
      submitHandler: function(form) {
-       var uri = "http://localhost:4711/IPASS/restservices/Wedstrijd/insert";
+       var uri = "restservices/Wedstrijd/insert";
 	    $.ajax(uri, { 
 	        type: "POST", 
 	        data: $("#WedstrijdForum").serialize(),
