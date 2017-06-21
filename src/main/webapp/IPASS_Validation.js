@@ -96,7 +96,7 @@ $("#WedstrijdForum").validate({
 	        },
 	        success: function(response) {
 	            $("#response").text("Something Inserted!");
-	            location.reload();
+	            window.location.replace("WedstrijdLijst_lid.html");
 	        },
 	        error: function(response) {
 	            $("#response").text("RIP!");
