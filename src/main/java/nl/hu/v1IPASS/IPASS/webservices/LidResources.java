@@ -16,7 +16,7 @@ import javax.ws.rs.Produces;
 import nl.hu.v1IPASS.IPASS.model.IPASSService;
 import nl.hu.v1IPASS.IPASS.model.Lid;
 import nl.hu.v1IPASS.IPASS.model.ServiceProvider;
-
+//De IPASSService functie resultaten worden doorgegeven aan de front end via de restservice in JSON formaat.
 @Path ("/Lid")
 public class LidResources {
 	private ServiceProvider sp;

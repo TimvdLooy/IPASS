@@ -10,7 +10,7 @@ public class MySecurityContext implements SecurityContext {
  private String name;
  private String role;
  private boolean isSecure;
-
+//object voor de werking van RolesAllowed.
  public MySecurityContext(String name, String role, boolean isSecure) {
  this.name = name;
  this.role = role;

@@ -21,6 +21,8 @@ import nl.hu.v1IPASS.IPASS.model.Inschrijvingen;
 import nl.hu.v1IPASS.IPASS.model.Lid;
 import nl.hu.v1IPASS.IPASS.model.ServiceProvider;
 
+//De IPASSService functie resultaten worden doorgegeven aan de front end via de restservice in JSON formaat.
+
 @Path("/Inschrijvingen")
 public class InschrijvingRescources {
 	private ServiceProvider sp;
@@ -68,6 +70,9 @@ public class InschrijvingRescources {
 		service.insertInschrijvingen(Inschrijving);
 	}
 	
+	//Deze functie heeft extra uitleg nodig om te begrijpen. De DAO geeft een array met scores en bijbehorende maand.
+	//echter als het lid een maand geen scores heeft of nooit een wedstrijd heeft gespeeld is deze array leeg.
+	//voor chart js kan dit niet. Deze loop maakt deze maanden dus aan met scoren 0.
 	@POST
 	@RolesAllowed("User")
 	@Path("/averageScore/{Bondsnummer}/{Jaar}")

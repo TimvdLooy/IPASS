@@ -16,7 +16,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.impl.crypto.MacProvider;
 import nl.hu.v1IPASS.IPASS.persistence.LidDAO;
 
-
+//Bouwen van de webtoken
 @Path("/authentication")
 public class AuthenticationResource {
  final static public Key key = MacProvider.generateKey();

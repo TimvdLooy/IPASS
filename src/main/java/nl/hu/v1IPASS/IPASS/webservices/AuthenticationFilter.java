@@ -15,7 +15,7 @@ import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
 import nl.hu.v1IPASS.IPASS.webservices.AuthenticationResource;
 import nl.hu.v1IPASS.IPASS.webservices.MySecurityContext;
-
+//Maakt mysecuritycontext aan voor de @RolesAllowed
 @Provider
 @Priority(Priorities.AUTHENTICATION)
 public class AuthenticationFilter implements ContainerRequestFilter {

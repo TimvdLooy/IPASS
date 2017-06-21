@@ -3,6 +3,7 @@ package nl.hu.v1IPASS.IPASS.model;
 import java.sql.Date;
 import java.sql.Time;
 
+//POJO voor Wedstrijd
 public class Wedstrijd {
 	private int Minimumleeftijd;
 	private String Typeboog;
@@ -13,6 +14,7 @@ public class Wedstrijd {
 	private int WedstrijdId;
 	private String Beschrijving;
 	
+	//Constructor voor het ophalen van wedstrijden.
 	public Wedstrijd (int Minimumleeftijd, String Typeboog, Time Begintijd, Time Eindtijd, Date Datum, String Naam, int WedstrijdId, String Beschrijving){
 		this.Minimumleeftijd = Minimumleeftijd;
 		this.Typeboog = Typeboog;
@@ -24,6 +26,7 @@ public class Wedstrijd {
 		this.Beschrijving = Beschrijving;
 	}
 	
+	//Constructor voor het aanmaken van nieuwe wedstrijden. WedstrijdId wordt door postgres gegenereerd.
 	public Wedstrijd (int Minimumleeftijd, String Typeboog, Time Begintijd, Time Eindtijd, Date Datum, String Naam, String Beschrijving){
 		this.Minimumleeftijd = Minimumleeftijd;
 		this.Typeboog = Typeboog;

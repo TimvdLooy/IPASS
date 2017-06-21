@@ -21,7 +21,7 @@ import javax.ws.rs.Produces;
 import nl.hu.v1IPASS.IPASS.model.IPASSService;
 import nl.hu.v1IPASS.IPASS.model.ServiceProvider;
 import nl.hu.v1IPASS.IPASS.model.Wedstrijd;
-
+//De IPASSService functie resultaten worden doorgegeven aan de front end via de restservice in JSON formaat.
 @Path("/Wedstrijd")
 public class WedstrijdRescources {
 	private ServiceProvider sp;

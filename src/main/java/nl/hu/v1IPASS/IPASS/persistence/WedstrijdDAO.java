@@ -13,7 +13,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import nl.hu.v1IPASS.IPASS.model.Wedstrijd;
-
+//alle functies worden toegelicht in de IPASSService. De functies die IPASSService gebruikt worden hieronder aangemaakt.
 public class WedstrijdDAO extends BaseDAO{
 	public ArrayList<Wedstrijd> findAllWedstrijd(){
 		ArrayList<Wedstrijd> WedstrijdLijst = new ArrayList<Wedstrijd>();

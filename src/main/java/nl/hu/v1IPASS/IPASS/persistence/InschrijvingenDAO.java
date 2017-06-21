@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import nl.hu.v1IPASS.IPASS.model.Inschrijvingen;
 import nl.hu.v1IPASS.IPASS.model.Lid;
 
+//alle functies worden toegelicht in de IPASSService. De functies die IPASSService gebruikt worden hieronder aangemaakt.
 public class InschrijvingenDAO extends BaseDAO{
 	public boolean checkInschrijving(int Bondsnummer, int WedstrijdId){
 		boolean ingeschreven = false;

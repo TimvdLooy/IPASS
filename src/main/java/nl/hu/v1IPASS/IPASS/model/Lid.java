@@ -1,5 +1,6 @@
 package nl.hu.v1IPASS.IPASS.model;
 
+//POJO voor Lid
 public class Lid {
 	private String Email;
 	private int Telefoonnummer;
