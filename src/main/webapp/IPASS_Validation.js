@@ -96,12 +96,12 @@ $("#WedstrijdForum").validate({
 	        },
 	        success: function(response) {
 	            $("#response").text("Something Inserted!");
+	            location.reload();
 	        },
 	        error: function(response) {
 	            $("#response").text("RIP!");
 	        }
 	    }); 
-
        event.preventDefault();
    }
      

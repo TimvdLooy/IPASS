@@ -121,7 +121,7 @@ function deleteWedstrijd(WedstrijdId){
     });
     setTimeout(function() {
     	laadWedstrijden();
-    },10000)
+    },1000)
 }
 
 function deleteLid(Bondsnummer){
